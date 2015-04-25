@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title>ToDo App Using Angular,Angular-Material,Firebase</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="./Index.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <!--<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>-->
+    <script src="./bower_components/angular-material/index.js"></script>
+    <style>
+        .image{
+            background-image: url(DeleteRed.png)
+        /*height: 2px*/
+        }
+        p{
+            display: inline;
+        }
+        .md-secondary{
+            display: inline;
+        }
+        .text{
+            display: inline;
+        }
+
+        .checkbox1{
+            border: 0px;
+            display: inline;
+            text-decoration: underline;
+        }
+        .hello{
+            border-radius: 150px;
+        }
+    </style>
+</head>
+<body  ng-app="myApp">
+<div>
+    <md-content align="cener "class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Main Page">
+                <md-content class="md-padding">
+                    <h1 align="center" class="md-display-2">ToDo App</h1>
+                </md-content>
+                <div align="center" ng-controller="myCtrl">
+                    <md-text-float  label="What Do You Want To Do ?" ng-model="Todo_item" required>
+                    </md-text-float>
+                    <md-button ng-click= "savetodo()" class="md-raised md-primary">Add</md-button>
+                    <md-button ng-click="delete()" class="md-raised md-warn">Delete ALL</md-button>
+                </div>
+                <div class="two " ng-controller="myctrl1">
+                    <div class="text1" ng-repeat="s in alltodo">
+                    <md-checkbox class="checkbox1" aria-label="Checkbox 1" >
+                       <b> {{s.name }}</b></md-checkbox>
+                    <img src="DeleteRed.png" ng-click= "remove($index)" height="22px" width="20px" class="md-avatar"/></hr></div>
+   </div>
+            </md-tab>
+            <md-tab  label="About">
+                <md-content class="md-padding">
+                    <h1 align="center" class="md-display-2">Want To know About Me?</h1>
+                    <md-toolbar class="md-primary">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-flex">This is the Simple Todo list Web App made using angular,angular material</h2>
+                        </div>
+                    </md-toolbar>
+                    <img src="imran.jpg" height="340px" width="300px" class="hello">
+                    <h2>Imran Khan</h2>
+                    <p>The Developer of this Todo Web App</p>
+                    <h2>2694:</h2>
+                    <p>
+                       The Roll no of Saylani mass training program
+                    </p>
+                    <h2>Contact Details</h2>
+                    <p>
+                       <img src="fb.png" height="25px" width="25px"><a href="https://www.facebook.com/profile.php?id=100000560801548">Facebook</a></br>
+                       <img src="in.png" height="25px" width="25px"><a href="https://pk.linkedin.com/pub/imran-khan/a6/491/925">LinkedIn</a></br>
+                        <img src="e.png" height="25px" width="25px"><a href="https://www.elance.com/s/edit/imrankhan94/">Elance</a></br>
+                    </p>
+                </md-content>
+                                </md-toolbar>
+            </md-tab>
+            <div>
+                <md-tab label="Feedback">
+                    <md-content class="md-padding">
+                        <md-toolbar class="md-primary">
+                            <div align="center" class="md-toolbar-tools">
+                                <h2 class="md-flex">Your Views Are Important For me</h2>
+                            </div>
+                        </md-toolbar>
+                    </md-content>
+                    <div align="center" ng-controller="views">
+                        <md-content layout-padding>
+
+                            <md-input-container md-no-float>
+                                <md-icon md-svg-src="/demo-partials/input/demoIcons/icons/ic_person_24px.svg" class="name"></md-icon>
+                                <input ng-model="user.name" type="text" placeholder="Name">
+                            </md-input-container>
+                            <md-input-container md-no-float>
+                                <md-icon md-svg-src="/demo-partials/input/demoIcons/icons/ic_email_24px.svg" class="email"></md-icon>
+                                <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+                            </md-input-container>
+                            <md-input-container md-no-float>
+                                <md-icon md-svg-src="/demo-partials/input/demoIcons/icons/ic_place_24px.svg"></md-icon>
+                                <input ng-model="user.subject" type="text" placeholder="Subject i.e Good,Excellent or Bad">
+                            </md-input-container>
+                            <h1 align="center">Be Honest</h1>
+                            <md-input-container md-no-float>
+                                <md-icon md-svg-src="/demo-partials/input/demoIcons/icons/ic_place_24px.svg"></md-icon>
+                                <input align="center" ng-model="user.feature" type="text" placeholder="Give me Some Advice !!">
+                            </md-input-container>
+
+                            <md-button ng-click= "add()" class="md-raised md-primary">Are You Sure ??</md-button>
+                            <!--</div>-->
+                        </md-content>
+                    </div>
+
+
+
+                    <div  ng-controller="ika">
+                          <md-list class="border2" ng-repeat="a in myviews">
+                        <md-list-item >
+                            <img src="person.png" height="50px" width="50px" class="md-avatar" alt="{{item.who}}" />
+                            <div class="md-list-item-text">
+                                <h3>{{a.name}}</h3>
+                                <h4>{{a.subject}}</h4>
+                                <h4>{{a.feature}}</h4>
+  </div>
+                        </md-list-item>
+                          </md-list>
+                    </div>
+
+                </md-tab>
+            </div>
+        </md-tabs>
+    </md-content>
+</div>
+</body>
+</html>

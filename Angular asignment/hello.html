@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+
+
+
+    <script src="../Important/bower_components/angular/angular.min.js"></script>
+    <script>
+
+        angular.module('myApp', [])
+
+                .controller('myCtrl', function($scope) {
+                    $scope.contacts = [
+
+                    ];
+                    $scope.save = function(){
+
+                        $scope.contacts.push($scope.user);
+                        $scope.user = {};
+                    }
+
+
+
+                })
+
+
+
+
+    </script>
+</head>
+<body>
+<div ng-app="myApp">
+
+
+    <div ng-controller="myCtrl">
+        Name:<span class="left"><input type="text" ng-model="user.name"></span>
+        <br>
+        Father Name:<span class="left"><input type="password" ng-model="user.pass"></span>
+        <br>
+        Address:<span class="left"><input type="text" ng-model="user.address"></span>
+        <br>
+        <button ng-click="save()">Save</button>
+        <table >
+            <th>NAME</th>
+            <th>Password</th>
+            <th>Address</th>
+            <tr ng-repeat="object in contacts">
+                <td>{{object.name}}</td>
+                <td>{{object.pass}}</td>
+                <td>{{object.address}}</td>
+            </tr>
+        </table>
+
+
+
+        </ul>
+
+    </div>
+
+</div>
+</body>
+</html>

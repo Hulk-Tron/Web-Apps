@@ -1,0 +1,9 @@
+{
+  "firebase": "imrantodo",
+  "public": "Main.html",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

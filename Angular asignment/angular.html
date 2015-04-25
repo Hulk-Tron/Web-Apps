@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frist Angular project</title>
+<script src="../Important/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myapp",[])
+        app.controller("myctrl",function($scope)
+        {
+           car= []
+           ice=[]
+           $scope.name = car[0]
+           $scope.last = ice[0]
+           $scope.raise = function(){
+           $scope.$broadcast("myEve", $scope.name,$scope.last);
+        }
+        })
+        app.controller("myctrl2",function($scope){
+            $scope.name=car[0]
+            $scope.last=ice[0]
+            $scope.$on("myEve",function(e,data,data1){
+            $scope.name = data;
+            $scope.last = data1
+})
+        })
+
+
+    </script>
+</head>
+<body ng-app="myapp">
+ <div ng-controller= "myctrl">
+     <input data-ng-model="name" type="text"></input>
+     </br>
+     <input data-ng-model="last" type="text"></input>
+     <button ng-click="raise()">Add</button>
+  <div ng-controller="myctrl2">
+      <ul ng-repeat="abc in name">
+      <li> {{abc}}</li>
+          <li>{{last}} </li>
+      </ul>
+  </div>
+
+
+
+ </div>
+
+</body>
+</html>
